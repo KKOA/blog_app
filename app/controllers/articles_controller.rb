@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   def index
+    @articles = Article.all
   end
 
   def new
@@ -19,8 +20,9 @@ class ArticlesController < ApplicationController
   end
 
   private
+
   def article_params
-    #whitelist article fields
+    # whitelist article fields
     params.require(:article).permit(:title, :body)
   end
 end
