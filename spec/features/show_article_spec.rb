@@ -15,5 +15,6 @@ RSpec.feature 'Show articles' do
     click_link @article2.title
     expect(page).to have_content(@article2.title)
     expect(page).not_to have_content(@article1.title)
+    expect(page.current_path).to eq(article_path(@article2))
   end
 end
