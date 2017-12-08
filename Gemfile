@@ -62,6 +62,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'orderly'
   gem 'rubocop'
 end
 
