@@ -5,25 +5,30 @@ RSpec.feature 'Test infrastructure' do
       title: 'The first article',
       body: 'Lorem ipsum dolor sit amet, consectetur.'*20
     )
-    @article2 = Article.create(
-      title: 'The second article',
-      body: 'Pellentesque ac ligula in tellus feugiat.'
-    )
   end
   scenario 'Cancel adding new article' do
     visit '/'
     click_link 'New Article'
     click_link 'Cancel'
-    expect(page).to have_content(@article2.title)
     expect(page).to have_content(@article1.title)
     expect(page.current_path).to eq(articles_path)
   end
-  scenario 'User views an article' do
+  scenario 'User return to articles' do
     visit '/'
-    click_link @article2.title
+    click_link @article1.title
     click_link 'View Articles'
-    expect(page).to have_content(@article2.title)
     expect(page).to have_content(@article1.title)
     expect(page.current_path).to eq(articles_path)
+  end
+  scenario 'Cancel Edit new article' do
+    visit '/'
+    title = @article1.title
+    body = @article1.body
+    click_link title
+    click_link 'Edit Article'
+    click_link 'Cancel'
+    expect(page).to have_content(title)
+    expect(page).to have_content(body)
+    expect(page.current_path).to eq(article_path(@article1))
   end
 end
