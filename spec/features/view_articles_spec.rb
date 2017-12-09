@@ -3,7 +3,7 @@ RSpec.feature 'Listing articles' do
   before do
     @article1 = Article.create(
       title: 'The first article',
-      body: 'Lorem ipsum dolor sit amet, consectetur.'*20
+      body: 'Lorem ipsum dolor sit amet, consectetur.' * 20
     )
     @article2 = Article.create(
       title: 'The second article',

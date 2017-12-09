@@ -3,7 +3,7 @@ RSpec.feature 'Edit articles' do
   before do
     @article1 = Article.create(
       title: 'The first article',
-      body: 'Lorem ipsum dolor sit amet, consectetur.'*20
+      body: 'Lorem ipsum dolor sit amet, consectetur.' * 20
     )
   end
   scenario 'User edits an article' do
