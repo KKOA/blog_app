@@ -30,21 +30,21 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     if @article.update(article_params)
-      flash[:success] = "Article has been updated"
+      flash[:success] = 'Article has been updated'
       redirect_to @article
     else
-      flash.now[:danger] = "Article has not been updated"
+      flash.now[:danger] = 'Article has not been updated'
       render :edit
     end
   end
 
   protected
 
-    def rescourse_not_found
-      message = 'The article you are looking for could not be found'
-      flash[:alert] = message
-      redirect_to root_path
-    end
+  def rescourse_not_found
+    message = 'The article you are looking for could not be found'
+    flash[:alert] = message
+    redirect_to root_path
+  end
 
   private
 
