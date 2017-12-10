@@ -38,6 +38,14 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def destroy
+    @article = Article.find(params[:id])
+    if  @article.destroy
+      flash[:success] = 'Article has been Deleted'
+      redirect_to articles_path
+    end
+  end
+
   protected
 
   def rescourse_not_found

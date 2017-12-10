@@ -5,6 +5,5 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def rescourse_not_found
-  end
+  def rescourse_not_found; end
 end
