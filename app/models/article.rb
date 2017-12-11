@@ -5,4 +5,15 @@ class Article < ApplicationRecord
   # Specify order in which data picked from database
   # desc for reverse order
   self.per_page = 3 #Set default number articles per page
+
+  def self.search(term, page)
+    if term
+      # where('title LIKE ?', "%#{term}%").paginate(page: page, per_page: 5).order('id DESC')
+      where('title LIKE ?', "%#{term}%").paginate(page: page)
+    else
+      # paginate(page: page, per_page: 5).order('id DESC')
+      paginate(page: page)
+    end
+  end
+
 end

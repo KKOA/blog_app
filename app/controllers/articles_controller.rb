@@ -4,8 +4,7 @@ class ArticlesController < ApplicationController
   # Method executed before the following [methods]
 
   def index
-    # @articles = Article.all
-    @articles = Article.paginate(page: params[:page])
+    @articles = Article.search(params[:term], params[:page])
   end
 
   def new
