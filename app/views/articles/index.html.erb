@@ -3,7 +3,7 @@
 <h1> Articles </h1>
 <%= link_to 'New Article', new_article_path, class: 'btn btn-default' %>
 <% if @articles.empty? %>
-  <h1 id="no-articles">No articles exist</h1>
+  <h1 id="no-articles">No articles found'</h1>
 <% else %>
   <% @articles.each do |article| %>
     <div class="well well-lg article-detail">
@@ -11,8 +11,11 @@
         <%= link_to article.title, article_path(article) %>
       </div>
       <div class="article-body">
-        <%= truncate(article.body, length: 500) %> 
+        <%= truncate(article.body, length: 500) %>
       </div>
     </div>
   <% end %>
+  <%= will_paginate @articles, previous_label: 'Newer', next_label: 'Older',inner_window:1, outer_window:0, renderer: BootstrapPagination::Rails %>
+  <br>
+  <%= page_entries_info @posts %>
 <% end %>
