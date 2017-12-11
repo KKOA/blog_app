@@ -13,7 +13,7 @@ RSpec.feature 'Listing articles' do
   scenario 'No Articles exist' do
     Article.delete_all
     visit '/'
-    expect(page).to have_content('No articles exist')
+    expect(page).to have_content('No articles found')
     expect(page).not_to have_content(@article1.title)
     expect(page).not_to have_content(@article2.body)
   end
