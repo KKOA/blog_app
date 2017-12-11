@@ -1,19 +1,151 @@
-<!-- <h1>Articles#index</h1>
-<p>Find me in app/views/articles/index.html.erb</p> -->
+<style>
+body {
+  background: #eee;
+  font: 12px Lucida sans, Arial, Helvetica, sans-serif;
+	color: #333;
+	text-align: center;
+}
+
+.form-wrapper {
+	background-color: #f6f6f6;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#eae8e8));
+	background-image: -webkit-linear-gradient(top, #f6f6f6, #eae8e8);
+	background-image: -moz-linear-gradient(top, #f6f6f6, #eae8e8);
+	background-image: -ms-linear-gradient(top, #f6f6f6, #eae8e8);
+	background-image: -o-linear-gradient(top, #f6f6f6, #eae8e8);
+	background-image: linear-gradient(top, #f6f6f6, #eae8e8);
+	border-color: #dedede #bababa #aaa #bababa;
+	border-style: solid;
+	border-width: 1px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+	-moz-box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+	box-shadow: 0 3px 3px rgba(255,255,255,.1), 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 5px #444;
+	margin: 10px auto;
+	overflow: hidden;
+	padding: 8px;
+	width: 450px;
+}
+
+.form-wrapper #term {
+	border: 1px solid #CCC;
+	-webkit-box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #FFF;
+	-moz-box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #FFF;
+	box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #FFF;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+  color: #999;
+	/*float: left;*/
+	font: 16px Lucida Sans, Trebuchet MS, Tahoma, sans-serif;
+	height: 40px;
+	padding: 10px;
+  margin-left:5px;
+	width: 320px;
+}
+
+.form-wrapper #term:focus {
+	border-color: #aaa;
+	-webkit-box-shadow: 0 1px 1px #bbb inset;
+	-moz-box-shadow: 0 1px 1px #bbb inset;
+	box-shadow: 0 1px 1px #bbb inset;
+	outline: 0;
+}
+
+.form-wrapper #term:-moz-placeholder,
+.form-wrapper #term:-ms-input-placeholder,
+.form-wrapper #term::-webkit-input-placeholder {
+	color: #999;
+	font-weight: normal;
+}
+
+
+.form-wrapper #submit {
+	background-color: #0483a0;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#31b2c3), to(#0483a0));
+	background-image: -webkit-linear-gradient(top, #31b2c3, #0483a0);
+	background-image: -moz-linear-gradient(top, #31b2c3, #0483a0);
+	background-image: -ms-linear-gradient(top, #31b2c3, #0483a0);
+	background-image: -o-linear-gradient(top, #31b2c3, #0483a0);
+	background-image: linear-gradient(top, #31b2c3, #0483a0);
+	border: 1px solid #00748f;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 0 #FFF;
+	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 0 #FFF;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 0 #FFF;
+	color: #fafafa;
+	cursor: pointer;
+	/*height: 42px;*/
+	/*float: right;*/
+	font: 15px Arial, Helvetica;
+	padding: 0;
+	text-transform: uppercase;
+	text-shadow: 0 1px 0 rgba(0, 0 ,0, .3);
+	/*width: 100px;*/
+  padding: 10px;
+}
+
+.form-wrapper #submit:hover,
+.form-wrapper #submit:focus {
+	background-color: #31b2c3;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#0483a0), to(#31b2c3));
+	background-image: -webkit-linear-gradient(top, #0483a0, #31b2c3);
+	background-image: -moz-linear-gradient(top, #0483a0, #31b2c3);
+	background-image: -ms-linear-gradient(top, #0483a0, #31b2c3);
+	background-image: -o-linear-gradient(top, #0483a0, #31b2c3);
+	background-image: linear-gradient(top, #0483a0, #31b2c3);
+}
+
+.form-wrapper #submit:active {
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+	outline: 0;
+}
+
+.form-wrapper #submit::-moz-focus-inner {
+	border: 0;
+}
+</style>
+
+
 <h1> Articles </h1>
-<%= link_to 'New Article', new_article_path, class: 'btn btn-default' %>
+<%= link_to new_article_path, class: 'btn btn-default' do %>
+New Article <span class="glyphicon glyphicon-plus"></span>
+<% end %>
+<% if @articles.count < Article.all.count %>
+  <%= link_to 'View Articles',articles_path, class: 'btn btn-default' %>
+<% end %>
+<%= form_tag(articles_path, method: :get, class: 'form-wrapper') do %>
+  <div class='form-group' style='margin-bottom:0'>
+    <%= label_tag :term%>
+    <%= text_field_tag :term, params[:term] ,id:'term', placeholder:'Search for...'%>
+    <button class="btn btn-primary" type="submit" id='submit' data-disable-with="Search">
+      <span class="glyphicon glyphicon-search"></span>
+      <span class="sr-only">Search</span>
+    </button>
+   </div>
+<% end %>
 <% if @articles.empty? %>
-  <h1 id="no-articles">No articles found'</h1>
+  <h1 id="no-articles">No articles found</h1>
 <% else %>
   <% @articles.each do |article| %>
-    <div class="well well-lg article-detail">
-      <div class="article-title">
+    <article class="well well-lg article-detail">
+      <header class="article-title">
         <%= link_to article.title, article_path(article) %>
-      </div>
+      </header>
       <div class="article-body">
         <%= truncate(article.body, length: 500) %>
       </div>
-    </div>
+      <footer>
+        <a href='#'>Keith Amoah</a><br>
+        <%= article.updated_at.strftime('%d/%m/%Y') %>
+      </footer>
+    </article>
   <% end %>
   <%= will_paginate @articles, previous_label: 'Newer', next_label: 'Older',inner_window:1, outer_window:0, renderer: BootstrapPagination::Rails %>
   <br>
