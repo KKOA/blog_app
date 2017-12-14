@@ -1,5 +1,4 @@
 class ArticlesController < ApplicationController
-
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   # Method executed before the following [methods]
 
@@ -25,9 +24,9 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def show;end
+  def show; end
 
-  def edit;end
+  def edit; end
 
   def update
     if @article.update(article_params)
@@ -40,7 +39,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    if  @article.destroy
+    if @article.destroy
       flash[:success] = 'Article has been Deleted'
       redirect_to articles_path
     end
@@ -64,5 +63,4 @@ class ArticlesController < ApplicationController
   def set_article
     @article = Article.find(params[:id])
   end
-
 end
