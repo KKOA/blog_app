@@ -28,4 +28,16 @@ RSpec.feature 'Test infrastructure' do
     expect(page).to have_content(body)
     expect(page.current_path).to eq(article_path(@article1))
   end
+  scenario 'Cancel Sign Up' do
+    visit '/users/sign_up'
+    click_link 'Cancel'
+    expect(page).to have_link('Sign Up')
+    expect(page).not_to have_button('Register')
+  end
+  scenario 'Cancel Login Up' do
+    visit '/users/sign_in'
+    click_link 'Cancel'
+    expect(page).to have_link('Sign In')
+    expect(page).not_to have_button('Log In')
+  end
 end
