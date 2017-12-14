@@ -3,6 +3,8 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   # Method executed before the following [methods]
 
+  # before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @articles = Article.search(params[:term], params[:page])
   end
