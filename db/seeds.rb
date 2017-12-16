@@ -8,6 +8,32 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# Dummy Users
+user1 = User.new
+user1.email = 'john@example.com'
+user1.password ='pepsimax'
+user1.password_confirmation ='pepsimax'
+user1.save!
+
+user2 = User.new
+user2.email = 'louisa@example.com'
+user2.password ='prayer'
+user2.password_confirmation ='prayer'
+user2.save!
+
+user3 = User.new
+user3.email = 'samuel@example.com'
+user3.password ='makers'
+user3.password_confirmation ='makers'
+user3.save!
+
+user4 = User.new
+user4.email = 'David@example.com'
+user4.password ='sharpie'
+user4.password_confirmation ='sharpie'
+user4.save!
+
+# Dummy articles
 Article.where(title: 'First Article').first_or_create(title: 'First Article',
    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut ante ante.
    Cras a sem ac felis pulvinar mollis quis non quam. Nullam lacus ligula, tristique sit amet justo eget, eleifend congue erat.
