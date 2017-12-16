@@ -13,13 +13,13 @@ RSpec.feature 'Test infrastructure' do
     expect(page.current_path).to eq(articles_path)
   end
   scenario 'User return to articles' do
-    visit '/articles/1'
+    visit "/articles/#{Article.first.id}"
     click_link 'View Articles'
     expect(page).to have_content(@article1.title)
     expect(page.current_path).to eq(articles_path)
   end
   scenario 'Cancel Edit new article' do
-    visit '/articles/1'
+    visit "/articles/#{Article.first.id}"
     title = @article1.title
     body = @article1.body
     click_link 'Edit Article'

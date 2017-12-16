@@ -34,6 +34,7 @@ default: &default
   username: <%= ENV['MYSQL_USER'] %>
   password: <%= ENV['MYSQL_PASS'] %>
   host: localhost
+  port: 3306
 
 
 development:
