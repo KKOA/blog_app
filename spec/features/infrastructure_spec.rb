@@ -1,9 +1,12 @@
 require 'rails_helper'
 RSpec.feature 'Test infrastructure' do
   before do
+    @user1 = User.create!(email: 'john@example.com', password: 'password')
+    login_as(@user1)
     @article1 = Article.create(
       title: 'The first article',
-      body: 'Lorem ipsum dolor sit amet, consectetur.' * 20
+      body: 'Lorem ipsum dolor sit amet, consectetur.' * 2,
+      user_id: @user1.id
     )
   end
   scenario 'Cancel adding new article' do
@@ -29,12 +32,14 @@ RSpec.feature 'Test infrastructure' do
     expect(page.current_path).to eq(article_path(@article1))
   end
   scenario 'Cancel Sign Up' do
+    logout()
     visit '/users/sign_up'
     click_link 'Cancel'
     expect(page).to have_link('Sign Up')
     expect(page).not_to have_button('Register')
   end
   scenario 'Cancel Login Up' do
+    logout()
     visit '/users/sign_in'
     click_link 'Cancel'
     expect(page).to have_link('Sign In')
