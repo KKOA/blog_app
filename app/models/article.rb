@@ -6,6 +6,8 @@ class Article < ApplicationRecord
   # desc for reverse order
   self.per_page = 3 # Set default number articles per page
 
+  belongs_to :user
+
   def self.search(term, page)
     if term
       # where('title LIKE ?', "%#{term}%").paginate(page: page, per_page: 5).order('id DESC')
