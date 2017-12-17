@@ -141,7 +141,8 @@ New Article <span class="glyphicon glyphicon-plus"></span>
       <div class="article-body">
         <%= truncate(article.body, length: 500) %>
       </div>
-      <footer>
+      <footer class="author">
+        <small> Created by: <%= article.user.email %></small>
         <a href='#'>Keith Amoah</a><br>
         <%= article.updated_at.strftime('%d/%m/%Y') %>
       </footer>
