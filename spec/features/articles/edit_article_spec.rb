@@ -9,7 +9,7 @@ RSpec.feature 'Edit articles' do
       user_id: @user1.id
     )
   end
-  scenario 'User edits an article' do
+  scenario 'Logged in owner edits an article' do
     visit '/'
     click_link @article1.title
     click_link 'Edit Article'
@@ -19,7 +19,7 @@ RSpec.feature 'Edit articles' do
     expect(page).to have_content('Article has been updated')
     expect(page.current_path).to eq(article_path(@article1))
   end
-  scenario 'User fails to edits an article' do
+  scenario 'Logged in owner fails to edits an article' do
     visit '/'
     click_link @article1.title
     click_link 'Edit Article'
@@ -31,16 +31,18 @@ RSpec.feature 'Edit articles' do
     expect(page).to have_content("Body can't be blank")
     expect(current_path).to eq(article_path(@article1))
   end
-  scenario 'User fails to edits an article' do
+  scenario 'Non logged in user cannot edits an article' do
+    logout()
     visit '/'
     click_link @article1.title
-    click_link 'Edit Article'
-    fill_in 'Title', with: ''
-    fill_in 'Body', with: ''
-    click_button 'Save Article'
-    expect(page).to have_content('Article has not been updated')
-    expect(page).to have_content("Title can't be blank")
-    expect(page).to have_content("Body can't be blank")
-    expect(current_path).to eq(article_path(@article1))
+    expect(page).not_to have_link('Edit Article')
+  end
+  scenario 'Non owner cannot edit anothers\' article' do
+    logout()
+    @user2 = User.create!(email: 'samuel@example.com', password: 'password')
+    login_as(@user2)
+    visit '/'
+    click_link @article1.title
+    expect(page).not_to have_link('Edit Article')
   end
 end
