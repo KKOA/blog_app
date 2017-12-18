@@ -114,8 +114,10 @@ body {
 
 
 <h1> Articles </h1>
-<%= link_to new_article_path, class: 'btn btn-default' do %>
-New Article <span class="glyphicon glyphicon-plus"></span>
+<% if user_signed_in? %>
+  <%= link_to new_article_path, class: 'btn btn-default' do %>
+  New Article <span class="glyphicon glyphicon-plus"></span>
+  <% end %>
 <% end %>
 <% if @articles.count < Article.all.count %>
   <%= link_to 'View Articles',articles_path, class: 'btn btn-default' %>
