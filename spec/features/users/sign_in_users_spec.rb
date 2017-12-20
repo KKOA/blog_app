@@ -21,6 +21,6 @@ RSpec.feature 'Sign In' do
     fill_in 'Email', with: ''
     fill_in 'Password', with: ''
     click_button 'Log In'
-    expect(page).to have_content('Invalid Email or password')
+    expect(page).to have_content('Invalid login credentials')
   end
 end
