@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :article_owner, only: [:edit, :update]
   # Method executed before the following [methods]
 
   before_action :authenticate_user!, except: [:index, :show]
@@ -27,10 +28,16 @@ class ArticlesController < ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+    unless @owner
+      not_owner
+    end
+  end
 
   def update
-    if @article.update(article_params)
+  if !@owner
+    not_owner
+  elsif @article.update(article_params)
       flash[:success] = 'Article has been updated'
       redirect_to @article
     else
@@ -63,5 +70,14 @@ class ArticlesController < ApplicationController
 
   def set_article
     @article = Article.find(params[:id])
+  end
+
+  def not_owner # Redirect homepage with message if not owner
+    flash[:alert] = 'Only the article owner can edit this article'
+    redirect_to root_path
+  end
+
+  def article_owner # Return true if article owner
+    @owner = @article.user == current_user
   end
 end
