@@ -27,7 +27,6 @@ RSpec.feature 'Delete articles' do
     @user2 = User.create!(email: 'joshua@example.com', password: 'password')
     login_as(@user2)
     visit '/'
-    title = @article1.title
     click_link @article1.title
     expect(page).not_to have_link('Delete Article')
   end

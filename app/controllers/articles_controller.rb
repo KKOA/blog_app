@@ -29,15 +29,13 @@ class ArticlesController < ApplicationController
   def show; end
 
   def edit
-    unless @owner
-      not_owner
-    end
+    not_owner unless @owner
   end
 
   def update
-  if !@owner
-    not_owner
-  elsif @article.update(article_params)
+    if !@owner
+      not_owner
+    elsif @article.update(article_params)
       flash[:success] = 'Article has been updated'
       redirect_to @article
     else
@@ -72,12 +70,14 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
-  def not_owner # Redirect homepage with message if not owner
+  # Redirect homepage with message if not owner
+  def not_owner
     flash[:alert] = 'Only the article owner can edit this article'
     redirect_to root_path
   end
 
-  def article_owner # Return true if article owner
+  # Return true if article owner
+  def article_owner
     @owner = @article.user == current_user
   end
 end
