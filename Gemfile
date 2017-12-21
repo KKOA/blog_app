@@ -41,6 +41,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'devise'
 gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem 'faker'
 gem 'mysql2'
 gem 'rails_real_favicon'
 gem 'will_paginate-bootstrap'
